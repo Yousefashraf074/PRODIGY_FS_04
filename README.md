@@ -11,7 +11,7 @@ A production-ready, real-time chat application featuring a stunning neon-themed 
 
 | Chat Login | Chat Dashboard |
 |:---:|:---:|
-| ![Login](screenshots/04-chat-login.png) | ![Dashboard](screenshots/05-chat-dashboard.png) |
+| ![Login](screenshots/03-app-health-check.png screenshots/04-chat-login.png) | ![Dashboard](screenshots/02-kubernetes-services.png screenshots/05-chat-dashboard.png) |
 
 | Real-Time Messaging | pgAdmin Database |
 |:---:|:---:|
@@ -23,7 +23,7 @@ A production-ready, real-time chat application featuring a stunning neon-themed 
 
 | K8s Services | Health Check |
 |:---:|:---:|
-| ![Services](screenshots/02-kubernetes-services.png) | ![Health](screenshots/03-app-health-check.png) |
+| ![Services](screenshots/05-chat-dashboard.png) | ![Health](screenshots/04-chat-login.png) |
 
 ## 📋 Table of Contents
 
