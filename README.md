@@ -15,18 +15,18 @@ Chat users |<img width="1911" height="914" alt="Screenshot 2026-03-04 023952" sr
 
 
  
-| Real-Time Messaging <img width="1904" height="907" alt="Screenshot 2026-03-04 024154" src="https://github.com/user-attachments/assets/f6597059-3a8c-4c2c-a48a-75b12587ca0e" />
+Real-Time Messaging |<img width="1904" height="907" alt="Screenshot 2026-03-04 024154" src="https://github.com/user-attachments/assets/f6597059-3a8c-4c2c-a48a-75b12587ca0e" />
 
 
 |pgAdmin Database |<img width="1920" height="1080" alt="Screenshot 2026-03-04 054845" src="https://github.com/user-attachments/assets/958220a8-60d8-4fdb-97a4-41f48a16cd4c" />
 
- Kubernetes Pods| <img width="1920" height="1080" alt="Screenshot 2026-03-04 031914" src="https://github.com/user-attachments/assets/d888842e-0e50-4253-83bd-70c479cf7269" />
+ Kubernetes Pods | <img width="1920" height="1080" alt="Screenshot 2026-03-04 031914" src="https://github.com/user-attachments/assets/d888842e-0e50-4253-83bd-70c479cf7269" />
 
 
  Docker Desktop |<img width="1919" height="1019" alt="Screenshot 2026-03-04 025139" src="https://github.com/user-attachments/assets/25c0dac9-5c74-477f-bc1f-d9236ef502ef" />
 
 
-K8s Services| <img width="1919" height="969" alt="Screenshot 2026-03-04 031505" src="https://github.com/user-attachments/assets/8c7128c5-53b1-4ba4-bad4-14150b5f7685" />
+K8s Services | <img width="1919" height="969" alt="Screenshot 2026-03-04 031505" src="https://github.com/user-attachments/assets/8c7128c5-53b1-4ba4-bad4-14150b5f7685" />
 
 
  Health Check |<img width="1920" height="1080" alt="Screenshot 2026-03-04 032740" src="https://github.com/user-attachments/assets/d4d52104-a8d4-4280-b8ec-1437c1dd418e" />
