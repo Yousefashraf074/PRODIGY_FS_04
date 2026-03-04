@@ -7,7 +7,23 @@
 
 A production-ready, real-time chat application featuring a stunning neon-themed UI, WebSocket messaging, full DevOps automation, containerization, and Kubernetes deployment.
 
-![Neon Chat Preview](https://via.placeholder.com/800x400/0a0a0f/00d4ff?text=Neon+Chat+Application)
+## 📸 Screenshots
+
+| Chat Login | Chat Dashboard |
+|:---:|:---:|
+| ![Login](screenshots/04-chat-login.png) | ![Dashboard](screenshots/05-chat-dashboard.png) |
+
+| Real-Time Messaging | pgAdmin Database |
+|:---:|:---:|
+| ![Messaging](screenshots/06-chat-messaging.png) | ![pgAdmin](screenshots/08-pgadmin-database.png) |
+
+| Kubernetes Pods | Docker Desktop |
+|:---:|:---:|
+| ![K8s Pods](screenshots/01-kubernetes-pods.png) | ![Docker](screenshots/07-docker-desktop.png) |
+
+| K8s Services | Health Check |
+|:---:|:---:|
+| ![Services](screenshots/02-kubernetes-services.png) | ![Health](screenshots/03-app-health-check.png) |
 
 ## 📋 Table of Contents
 
