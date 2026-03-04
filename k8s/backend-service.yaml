@@ -1,0 +1,27 @@
+# Backend Service for Neon Chat
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: neon-chat
+  labels:
+    app: neon-chat
+    component: backend
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "5004"
+spec:
+  type: ClusterIP
+  selector:
+    app: neon-chat
+    component: backend
+  ports:
+    - name: http
+      port: 5004
+      targetPort: 5004
+      protocol: TCP
+  # Enable sticky sessions for WebSocket support
+  sessionAffinity: ClientIP
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 3600

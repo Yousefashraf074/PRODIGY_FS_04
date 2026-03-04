@@ -1,0 +1,90 @@
+// Prisma Schema for Neon Chat Application
+// This schema defines the database structure for PostgreSQL
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - represents a registered user
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  messages       Message[]
+  privateChats1  PrivateChat[] @relation("User1Chats")
+  privateChats2  PrivateChat[] @relation("User2Chats")
+
+  @@index([username])
+  @@index([email])
+  @@map("users")
+}
+
+// ChatRoom model - represents a public chat room
+model ChatRoom {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  messages Message[]
+
+  @@index([name])
+  @@map("chat_rooms")
+}
+
+// Message model - represents a message in a chat room or private chat
+model Message {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userId        Int
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  chatRoomId    Int?
+  chatRoom      ChatRoom?   @relation(fields: [chatRoomId], references: [id], onDelete: Cascade)
+  
+  privateChatId Int?
+  privateChat   PrivateChat? @relation(fields: [privateChatId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([chatRoomId])
+  @@index([privateChatId])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+// PrivateChat model - represents a private conversation between two users
+model PrivateChat {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user1Id  Int
+  user1    User     @relation("User1Chats", fields: [user1Id], references: [id], onDelete: Cascade)
+  
+  user2Id  Int
+  user2    User     @relation("User2Chats", fields: [user2Id], references: [id], onDelete: Cascade)
+  
+  messages Message[]
+
+  @@unique([user1Id, user2Id])
+  @@index([user1Id])
+  @@index([user2Id])
+  @@map("private_chats")
+}

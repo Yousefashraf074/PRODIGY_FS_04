@@ -1,0 +1,8 @@
+# Kubernetes Namespace for Neon Chat Application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: neon-chat
+  labels:
+    app: neon-chat
+    environment: production

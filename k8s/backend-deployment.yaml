@@ -1,0 +1,133 @@
+# Backend Deployment for Neon Chat
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: neon-chat
+  labels:
+    app: neon-chat
+    component: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: neon-chat
+      component: backend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: neon-chat
+        component: backend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3001"
+        prometheus.io/path: "/metrics"
+    spec:
+      initContainers:
+        # Wait for PostgreSQL to be ready
+        - name: wait-for-postgres
+          image: postgres:16-alpine
+          command:
+            - sh
+            - -c
+            - |
+              until pg_isready -h postgres-service -p 5432 -U postgres; do
+                echo "Waiting for PostgreSQL..."
+                sleep 2
+              done
+              echo "PostgreSQL is ready!"
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: neon-chat-secrets
+                  key: POSTGRES_PASSWORD
+      containers:
+        - name: backend
+          # Local minikube image
+          image: neon-chat-backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5004
+              name: http
+          env:
+            - name: NODE_ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: neon-chat-config
+                  key: NODE_ENV
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: neon-chat-config
+                  key: PORT
+            - name: JWT_EXPIRES_IN
+              valueFrom:
+                configMapKeyRef:
+                  name: neon-chat-config
+                  key: JWT_EXPIRES_IN
+            - name: FRONTEND_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: neon-chat-config
+                  key: FRONTEND_URL
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: neon-chat-secrets
+                  key: DATABASE_URL
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: neon-chat-secrets
+                  key: JWT_SECRET
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          # Liveness probe
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5004
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          # Readiness probe
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5004
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+          # Startup probe for slow starting containers
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 5004
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+      # Pod anti-affinity to spread replicas across nodes
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: neon-chat
+                    component: backend
+                topologyKey: kubernetes.io/hostname

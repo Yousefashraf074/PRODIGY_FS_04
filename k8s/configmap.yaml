@@ -1,0 +1,23 @@
+# ConfigMap for Neon Chat Application
+# Contains non-sensitive configuration data
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: neon-chat-config
+  namespace: neon-chat
+  labels:
+    app: neon-chat
+data:
+  # Backend configuration
+  NODE_ENV: "production"
+  PORT: "5004"
+  JWT_EXPIRES_IN: "7d"
+  FRONTEND_URL: "http://neon-chat.local"
+
+  # Database configuration
+  POSTGRES_DB: "neon_chat"
+  POSTGRES_USER: "postgres"
+
+  # Frontend configuration
+  VITE_API_URL: "/api"
+  VITE_SOCKET_URL: ""

@@ -1,0 +1,19 @@
+# PostgreSQL Service for Neon Chat
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: neon-chat
+  labels:
+    app: neon-chat
+    component: database
+spec:
+  type: ClusterIP
+  selector:
+    app: neon-chat
+    component: database
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+      protocol: TCP

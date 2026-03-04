@@ -1,0 +1,38 @@
+{
+  "name": "neon-chat-backend",
+  "version": "1.0.0",
+  "description": "Real-time chat backend with Socket.IO and PostgreSQL",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:push": "prisma db push"
+  },
+  "keywords": [
+    "chat",
+    "websocket",
+    "socket.io",
+    "realtime"
+  ],
+  "author": "DevOps Team",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.10.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "prom-client": "^15.1.0",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.10.0",
+    "supertest": "^6.3.4"
+  }
+}

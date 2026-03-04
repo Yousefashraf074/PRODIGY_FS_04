@@ -1,0 +1,70 @@
+# Frontend Deployment for Neon Chat
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: neon-chat
+  labels:
+    app: neon-chat
+    component: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: neon-chat
+      component: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: neon-chat
+        component: frontend
+    spec:
+      containers:
+        - name: frontend
+          # Local minikube image
+          image: neon-chat-frontend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+          # Liveness probe
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          # Readiness probe
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      # Pod anti-affinity
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: neon-chat
+                    component: frontend
+                topologyKey: kubernetes.io/hostname

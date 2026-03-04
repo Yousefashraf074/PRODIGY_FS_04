@@ -1,0 +1,69 @@
+# Prometheus Configuration for Neon Chat Application
+# This file configures Prometheus to scrape metrics from the application
+
+global:
+  # How frequently to scrape targets
+  scrape_interval: 15s
+  # How frequently to evaluate rules
+  evaluation_interval: 15s
+  # Attach these labels to any time series or alerts when communicating
+  external_labels:
+    monitor: "neon-chat-monitor"
+
+# Alerting configuration (optional - requires Alertmanager)
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+          # - alertmanager:9093
+
+# Rule files (for alerting rules)
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# Scrape configuration
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+    metrics_path: /metrics
+    scheme: http
+
+  # Backend API metrics
+  - job_name: "neon-chat-backend"
+    static_configs:
+      - targets: ["backend:5004"]
+    metrics_path: /metrics
+    scheme: http
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    honor_labels: true
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: instance
+        replacement: "backend"
+
+  # Node exporter (if running)
+  # - job_name: 'node-exporter'
+  #   static_configs:
+  #     - targets: ['node-exporter:9100']
+
+  # PostgreSQL exporter (if running)
+  # - job_name: 'postgres-exporter'
+  #   static_configs:
+  #     - targets: ['postgres-exporter:9187']
+
+  # Nginx exporter (if running stub_status)
+  # - job_name: 'nginx'
+  #   static_configs:
+  #     - targets: ['nginx-exporter:9113']
+
+# Remote write configuration (for long-term storage)
+# remote_write:
+#   - url: "http://remote-storage:9201/write"
+
+# Remote read configuration
+# remote_read:
+#   - url: "http://remote-storage:9201/read"
