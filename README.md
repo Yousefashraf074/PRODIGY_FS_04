@@ -11,7 +11,9 @@ A production-ready, real-time chat application featuring a stunning neon-themed 
 
 | Chat Login | Chat Dashboard |
 |:---:|:---:|
-| ![Login](screenshots/03-app-health-check.png screenshots/04-chat-login.png) | ![Dashboard](screenshots/02-kubernetes-services.png screenshots/05-chat-dashboard.png) |
+| <img width="1904" height="907" alt="Screenshot 2026-03-04 024154" src="https://github.com/user-attachments/assets/69617814-d6fc-4ee1-9ac4-251d5df7ed21" />
+ | <img width="1905" height="904" alt="Screenshot 2026-03-04 024057" src="https://github.com/user-attachments/assets/9961a826-9449-4b17-840c-aa213b47ab5e" />
+ |
 
 | Real-Time Messaging | pgAdmin Database |
 |:---:|:---:|
