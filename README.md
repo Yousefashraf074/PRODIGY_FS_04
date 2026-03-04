@@ -9,23 +9,31 @@ A production-ready, real-time chat application featuring a stunning neon-themed 
 
 ## 📸 Screenshots
 
-| Chat Login | Chat Dashboard |
+ Chat Dashboard || <img width="1905" height="904" alt="Screenshot 2026-03-04 024057" src="https://github.com/user-attachments/assets/9961a826-9449-4b17-840c-aa213b47ab5e" />
+ |
 |:---:|:---:|
-| <img width="1904" height="907" alt="Screenshot 2026-03-04 024154" src="https://github.com/user-attachments/assets/69617814-d6fc-4ee1-9ac4-251d5df7ed21" />
- | <img width="1905" height="904" alt="Screenshot 2026-03-04 024057" src="https://github.com/user-attachments/assets/9961a826-9449-4b17-840c-aa213b47ab5e" />
+Chat users |<img width="1911" height="914" alt="Screenshot 2026-03-04 023952" src="https://github.com/user-attachments/assets/434d8b29-d75f-4dbd-af02-a946586f9b9b" />
+
+
  |
 
-| Real-Time Messaging | pgAdmin Database |
-|:---:|:---:|
-| ![Messaging](screenshots/06-chat-messaging.png) | ![pgAdmin](screenshots/08-pgadmin-database.png) |
+| Real-Time Messaging <img width="1904" height="907" alt="Screenshot 2026-03-04 024154" src="https://github.com/user-attachments/assets/f6597059-3a8c-4c2c-a48a-75b12587ca0e" />
 
-| Kubernetes Pods | Docker Desktop |
 |:---:|:---:|
-| ![K8s Pods](screenshots/01-kubernetes-pods.png) | ![Docker](screenshots/07-docker-desktop.png) |
 
-| K8s Services | Health Check |
+| pgAdmin Database |<img width="1920" height="1080" alt="Screenshot 2026-03-04 054845" src="https://github.com/user-attachments/assets/958220a8-60d8-4fdb-97a4-41f48a16cd4c" />
+
+| Kubernetes Pods <img width="1920" height="1080" alt="Screenshot 2026-03-04 031914" src="https://github.com/user-attachments/assets/d888842e-0e50-4253-83bd-70c479cf7269" />
+
 |:---:|:---:|
-| ![Services](screenshots/05-chat-dashboard.png) | ![Health](screenshots/04-chat-login.png) |
+| Docker Desktop |<img width="1919" height="1019" alt="Screenshot 2026-03-04 025139" src="https://github.com/user-attachments/assets/25c0dac9-5c74-477f-bc1f-d9236ef502ef" />
+
+
+| K8s Services <img width="1919" height="969" alt="Screenshot 2026-03-04 031505" src="https://github.com/user-attachments/assets/8c7128c5-53b1-4ba4-bad4-14150b5f7685" />
+
+|:---:|:---:|
+| Health Check |<img width="1920" height="1080" alt="Screenshot 2026-03-04 032740" src="https://github.com/user-attachments/assets/d4d52104-a8d4-4280-b8ec-1437c1dd418e" />
+
 
 ## 📋 Table of Contents
 
